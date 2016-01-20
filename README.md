@@ -42,7 +42,7 @@ In my program the data is from http://www.omdbapi.com/
 	 lucene.searchByMultipleCriteria(searchMultiFieldsDto)   	 
 #### Result in the console:      
 queryString is:        
-plot:"Skywalker" AND plot:"Jedi" AND title:Star Wars* OR title:New Hope* AND director:"George Lucas"
+plot:"Skywalker" AND plot:"Jedi" AND title:Star Wars* OR title:New Hope* AND director:"George Lucas"    
 Found 1 hits.
 Index	Title		IMDb-URL	
 1.	Star Wars: Episode IV - A New Hope	http://www.imdb.com/title/tt0076759/	
@@ -60,10 +60,10 @@ Index	Title		IMDb-URL
 	  searchDto.setSearchCriteria(searchCriteriaA);
 	  lucene.searchBySingleCriteria(searchDto);    
 #### Result in the console:    
-//queryString is:    title:Ocean*
-//Found 3 hits.  
-//Index	Title		IMDb-URL	
-//1.	Ocean's Twelve	http://www.imdb.com/title/tt0349903/  
-//2.	Ocean's Thirteen	http://www.imdb.com/title/tt0496806/  
-//3.	Ocean's Eleven	http://www.imdb.com/title/tt0240772/  
+queryString is:    title:Ocean*		    
+Found 3 hits.      
+Index	Title		IMDb-URL	
+1.	Ocean's Twelve	http://www.imdb.com/title/tt0349903/  
+2.	Ocean's Thirteen	http://www.imdb.com/title/tt0496806/  
+3.	Ocean's Eleven	http://www.imdb.com/title/tt0240772/  
 
