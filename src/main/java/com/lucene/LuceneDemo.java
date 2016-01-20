@@ -194,7 +194,7 @@ public class LuceneDemo {
 		  // display header
 		  System.out.println(sb.append("Index").append("\t")
 				  				.append("Title").append("\t").append("\t")
-				  				.append("IMDb URL").append("\t")
+				  				.append("IMDb-URL").append("\t")
 				  				.toString());		  						
 		  for(int i=0;i<hits.length;++i) {
 		      int docId = hits[i].doc;

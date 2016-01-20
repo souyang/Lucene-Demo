@@ -41,7 +41,7 @@ In my program the data is from http://www.omdbapi.com/
 	 searchMultiFieldsDto.setSearchCriteriaList(list); 
 	 lucene.searchByMultipleCriteria(searchMultiFieldsDto)   	 
 #### Result in the console:      
-queryString is: 
+queryString is:    
 plot:"Skywalker" AND plot:"Jedi" AND title:Star Wars* OR title:New Hope* AND director:"George Lucas"
 Found 1 hits.
 Index	Title		IMDb URL	
@@ -60,7 +60,7 @@ Index	Title		IMDb URL
 	  searchDto.setSearchCriteria(searchCriteriaA);
 	  lucene.searchBySingleCriteria(searchDto);    
 #### Result in the console:    
-//queryString is: title:Ocean*
+//queryString is:   title:Ocean*
 //Found 3 hits.  
 //Index	Title		IMDb URL	
 //1.	Ocean's Twelve	http://www.imdb.com/title/tt0349903/  
