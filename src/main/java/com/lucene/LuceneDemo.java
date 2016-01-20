@@ -37,6 +37,7 @@ import org.json.*;
  */
 public class LuceneDemo {
 	private static final String FILE_NAME_PATH = "src/main/resources/data.json";
+	private static final int HITS_PER_PAGE = 10;
 	private static StandardAnalyzer analyzer;
 	private static Directory index;
 	private static IndexWriterConfig config;
@@ -150,13 +151,13 @@ public class LuceneDemo {
 	   LuceneUtil.validateSearchDto(searchDto); 	  
  	  
  	 String queryString  = LuceneUtil.formatQueryString(searchDto.getSearchCriteria());
- 	  System.out.println("queryString is: " + queryString);
+ 	 System.out.println("queryString built is: \n" + queryString);
 	   try { 
 			Query query = new QueryParser(searchDto.getSearchCriteria().getSearchField(), searchDto.getAnalyzer()).parse(queryString);
 			searchResult(searchDto.getIndex(), query);
 	   } 
 	   catch (Exception e) {
-		// TODO: handle exception
+		e.printStackTrace();
 	}
    }
    
@@ -165,7 +166,7 @@ public class LuceneDemo {
 	   LuceneUtil.validateSearchMultipleFieldsDto(searchDto);
  	  	  
 	  String queryString = LuceneUtil.formatQueryString(searchDto.getSearchCriteriaList());
-	  System.out.println("queryString is: " + queryString);
+	  System.out.println("queryString is: \n" + queryString);
 	   try { 
 		Query query = new QueryParser(LuceneUtil.getDefaultSearchField(), searchDto.getAnalyzer()).parse(queryString);
 		searchResult(searchDto.getIndex(), query);
@@ -183,18 +184,17 @@ public class LuceneDemo {
 	 * @throws IOException
 	 */
 	private static void searchResult(Directory index, Query query) throws IOException {
-		int hitsPerPage = 10;
 		StringBuilder sb = new StringBuilder();
 		IndexReader reader = DirectoryReader.open(index);
 		  IndexSearcher searcher = new IndexSearcher(reader);
-		  TopDocs docs = searcher.search(query, hitsPerPage);
+		  TopDocs docs = searcher.search(query, HITS_PER_PAGE);
 		  ScoreDoc[] hits = docs.scoreDocs;
 		  // display results
 		  System.out.println("Found " + hits.length + " hits.");
 		  // display header
 		  System.out.println(sb.append("Index").append("\t")
 				  				.append("Title").append("\t").append("\t")
-				  				.append("IMDbID").append("\t")
+				  				.append("IMDb URL").append("\t")
 				  				.toString());		  						
 		  for(int i=0;i<hits.length;++i) {
 		      int docId = hits[i].doc;
@@ -202,7 +202,8 @@ public class LuceneDemo {
 		      sb.setLength(0);
 		      System.out.println(sb.append((i + 1)).append( ".").append("\t").
 		    		  append(d.get("title")).append("\t").
-		    		  append(d.get("imdbID")).toString());
+		    		  append("http://www.imdb.com/title/").
+		    		  append(d.get("imdbID")).append("/").toString());
 		    		  
 		  }
 	      // reader can only be closed when there
