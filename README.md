@@ -20,10 +20,10 @@ Indexing involves adding Documents with one or more fields to an IndexWriter. Se
 ### "AND" condition and "OR" condition
 In my program, comma stands for AND and pipe stands OR. Therefore "Skywalker,Jedi" is equivalent to keyword contains "Skywalker" AND "Jedi". "Star Wars|New Hope" is equivalent to keyword contains "Star Wars" OR "New Hope"
 
-### Data Source
+### Data resource
 In my program the data is from http://www.omdbapi.com/
 
-### sample useage of code
+### Sample useage of code
 	  // Multi-Fields Search
 	  // Try to find out the film with title start with "Star Wars" or "New Hope" 
 	  // and Plot contains "Jedi" and "Skywalker" and Director contains George Lucas
@@ -39,9 +39,8 @@ In my program the data is from http://www.omdbapi.com/
 	 list.add(new SearchCriteria("title",keywordsForTitle,false));
 	 list.add(new SearchCriteria("director",keywordsForDirector,true));
 	 searchMultiFieldsDto.setSearchCriteriaList(list); 
-	 lucene.searchByMultipleCriteria(searchMultiFieldsDto)
-	 
-	 //Result in the console: 
+	 lucene.searchByMultipleCriteria(searchMultiFieldsDto)   	 
+#### Result in the console:      
 queryString is: 
 plot:"Skywalker" AND plot:"Jedi" AND title:Star Wars* OR title:New Hope* AND director:"George Lucas"
 Found 1 hits.
@@ -59,9 +58,8 @@ Index	Title		IMDb URL
 	  searchCriteriaA.setSearchField("title");
 	  searchCriteriaA.setQueryString(keywords);
 	  searchDto.setSearchCriteria(searchCriteriaA);
-	  lucene.searchBySingleCriteria(searchDto);   
-
-// Result in the console
+	  lucene.searchBySingleCriteria(searchDto);    
+#### Result in the console:    
 //queryString is: title:Ocean*
 //Found 3 hits.  
 //Index	Title		IMDb URL	
